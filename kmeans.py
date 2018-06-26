@@ -49,8 +49,8 @@ tsvToEmojiDict = arrayToDict(getFile('emoji_lookup.tsv'))#dictionary to translat
 emojiDataFrame = pd.read_csv(StringIO(codecs.open('emojis.txt', 'r', encoding='utf8', errors='ignore').read()), sep='\s+')#creates pandas system for holding data
 dimensions = np.array(emojiDataFrame.as_matrix(columns=emojiDataFrame.columns[1:]))#gets dimensions in an array perfect for cluster
 #			auto random state
-#cluster = km(n_clusters = 250, max_iter=10000000)#kmeans clustering
-cluster = ap(max_iter=1000000)#Affinity propogation clustering
+cluster = km(n_clusters = 100, max_iter=10000000)#kmeans clustering
+#cluster = ap(max_iter=1000000)#Affinity propogation clustering
 #cluster = b(n_clusters=200)#birch clustering
 cluster.fit(dimensions)
 codedCluster = addEmojiCode(dimensions, cluster, getFile('emoji_lookup.tsv'))
